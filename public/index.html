@@ -13,7 +13,7 @@
   <script lang="javascript">
     const callAPI = async (method, params = {}) => {
       try {
-        let options = Object.apply({method}, (method !== 'GET') ? {body: JSON.stringify(params)} : {});
+        let options = Object.assign({method}, (method !== 'GET') ? {body: JSON.stringify(params)} : {});
         let response = await fetch('/.netlify/functions/api', options);
         if(!response.ok) {
           console.error(response.statusText);
