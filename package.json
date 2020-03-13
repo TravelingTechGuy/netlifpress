@@ -1,0 +1,16 @@
+{
+  "name": "netlifpress",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "start": "npm run build",
+    "build": "netlify-lambda build functions"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "serverless-http": "^2.3.2"
+  },
+  "devDependencies": {
+    "netlify-lambda": "^1.6.3"
+  }
+}
