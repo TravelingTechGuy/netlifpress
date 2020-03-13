@@ -4,6 +4,7 @@
   "license": "MIT",
   "scripts": {
     "start": "npm run build",
+    "start:functions": "netlify-lambda serve src/functions --port 8888",
     "build": "netlify-lambda build functions"
   },
   "dependencies": {
