@@ -4,43 +4,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Express Test</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="stylesheet" type="text/css" href="index.css">
 </head>
 <body>
-  <button onclick="post()">POST</button><br>
-  <button onclick="get()">GET</button><br>
-  <button onclick="put()">PUT</button><br>
-  <button onclick="del()">DELETE</button><br>
+  <h2>Test the REST API:</h2>
+  <ul>
+    <li><button onclick="post()">Create (POST)</button></li>
+    <li><button onclick="get()">Read (GET)</button></li>
+    <li><button onclick="put()">Update (PUT)</button></li>
+    <li><button onclick="del()">Delete (DELETE)</button></li>
+  </ul>
+  <br>
   <div id="result"></div>
-  <script lang="javascript">
-    const showResult = text => document.getElementById('result').innerText = text;
-    const callAPI = async (method, params = {}) => {
-      try {
-        showResult('');
-        let options = Object.assign({method}, method === 'GET' ? {} :
-          {
-            body: JSON.stringify(params),
-            headers: {'Content-Type': 'application/json'}
-          }
-        );
-        console.log(options)
-        let response = await fetch('/.netlify/functions/api', options);
-        if(!response.ok) {
-          console.error(response.statusText);
-        }
-        else {
-          let body = await response.text();
-          showResult(body);
-        }
-      }
-      catch(err) {
-        console.error(err);
-      }
-    }
 
-    const post = () => callAPI('POST', {first: 'Mike', last: 'Smith'});
-    const get = () => callAPI('GET');
-    const put = () => callAPI('PUT', {id: 1001});
-    const del = () => callAPI('DELETE', {id: 1001});
-  </script>
+  <script lang="javascript" src="index.js"></script>
 </body>
 </html>
