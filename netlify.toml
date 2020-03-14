@@ -1,8 +1,4 @@
 [build]
   functions = "api"
   command = "yarn run build"
-
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+  publish = "public"
