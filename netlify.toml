@@ -1,5 +1,5 @@
-[functions]
-  functions = "./functions"
+[build]
+  functions = "api"
   command = "yarn run build"
 
 [[redirects]]
