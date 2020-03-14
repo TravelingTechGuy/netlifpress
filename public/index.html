@@ -9,18 +9,27 @@
   <button onclick="post()">POST</button><br>
   <button onclick="get()">GET</button><br>
   <button onclick="put()">PUT</button><br>
-  <button onclick="del()">DELETE</button>
+  <button onclick="del()">DELETE</button><br>
+  <div id="result"></div>
   <script lang="javascript">
+    const showResult = text => document.getElementById('result').innerText = text;
     const callAPI = async (method, params = {}) => {
       try {
-        let options = Object.assign({method}, (method !== 'GET') ? {body: JSON.stringify(params)} : {});
+        showResult('');
+        let options = Object.assign({method}, method === 'GET' ? {} :
+          {
+            body: JSON.stringify(params),
+            headers: {'Content-Type': 'application/json'}
+          }
+        );
+        console.log(options)
         let response = await fetch('/.netlify/functions/api', options);
         if(!response.ok) {
           console.error(response.statusText);
         }
         else {
-          let body = await response.body();
-          console.log(body);
+          let body = await response.text();
+          showResult(body);
         }
       }
       catch(err) {
@@ -28,10 +37,10 @@
       }
     }
 
-    const post = () => callAPI('POST');
+    const post = () => callAPI('POST', {first: 'Mike', last: 'Smith'});
     const get = () => callAPI('GET');
-    const put = () => callAPI('PUT');
-    const del = () => callAPI('DELETE');
+    const put = () => callAPI('PUT', {id: 1001});
+    const del = () => callAPI('DELETE', {id: 1001});
   </script>
 </body>
 </html>
